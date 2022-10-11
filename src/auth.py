@@ -57,19 +57,6 @@ def login():
     email = request.json.get('email', '')
     password = request.json.get('password', '')
 
-    # with User.query.filter_by(email=email).first() as user:
-    #     if user and check_password_hash(user.password, password):
-    #         refresh = create_refresh_token(identity=user.id)
-    #         access = create_access_token(identity=user.id)
-    #         return jsonify({
-    #             'user': {
-    #                 'refresh':refresh,
-    #                 'access':access,
-    #                 'username':user.username,
-    #                 'email':user.email
-    #             }
-    #         })
-    
     user = User.query.filter_by(email=email).first()
     if user:
         check = check_password_hash(user.password, password)
